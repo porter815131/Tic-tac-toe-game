@@ -36,6 +36,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 /* 1, 2, 3 的cell */
 .cell:first-child,
