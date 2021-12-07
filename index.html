@@ -5,6 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>圈叉遊戲</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="./script.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div class="board o" id="board">
+      <div class="cell x" data-cell></div>
+      <div class="cell o" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+      <div class="cell" data-cell></div>
+    </div>
+    <div class="winning-modal" id="winningModal">
+      <div data-winning>X WIN</div>
+      <button id="restartButton">重新開始</button>
+    </div>
+  </body>
 </html>

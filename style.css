@@ -1,0 +1,160 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --cell-size: 10rem;
+  --symbol-size: calc(var(--cell-size) * 0.9);
+}
+
+body {
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.cell {
+  position: relative;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border: 1.5px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 1, 2, 3 的cell */
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: none;
+}
+/* 1, 4, 7 的cell */
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
+/* 3, 6, 9 的cell */
+.cell:nth-child(3n + 3) {
+  border-right: none;
+}
+/* 7, 8, 9 的cell */
+.cell:last-child,
+.cell:nth-child(7),
+.cell:nth-child(8) {
+  border-bottom: none;
+}
+
+.cell.o,
+.cell.x {
+  cursor: not-allowed;
+}
+
+.cell.x::before,
+.cell.x::after {
+  background-color: #000;
+}
+
+.cell.o::before,
+.cell.o::after {
+  background-color: #000;
+}
+
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+  background-color: #ddd;
+}
+
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
+  background-color: #ddd;
+}
+
+/* X 標誌 */
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+  content: "";
+  width: calc(var(--symbol-size) * 0.15);
+  height: var(--symbol-size);
+
+  position: absolute;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before {
+  transform: rotate(45deg);
+}
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after {
+  transform: rotate(-45deg);
+}
+/* O 標誌 */
+.cell.o::before,
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
+  content: "";
+  border-radius: 50%;
+
+  position: absolute;
+}
+
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
+  width: var(--symbol-size);
+  height: var(--symbol-size);
+}
+
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after {
+  width: calc(var(--symbol-size) * 0.75);
+  height: calc(var(--symbol-size) * 0.75);
+  background-color: #fff;
+}
+
+.winning-modal {
+  display: none;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.9);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 5rem;
+}
+
+.winning-modal button {
+  border-radius: 8px;
+  border: none;
+  font-size: 3rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.winning-modal button:hover {
+  background-color: #aaa;
+}
+
+.winning-modal.show {
+  display: flex;
+}
